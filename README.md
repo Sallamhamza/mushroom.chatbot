@@ -1,51 +1,160 @@
-# Assignment: Building a Mushroom Chatbot
-After the completion of the Lab, you are welcome to start working on the assignment. Here, you will be developing the mushroom chatbot presented during the lab seminar.
+Mushroom Expert Chatbot
+A multimodal AI chatbot powered by Gemini/HuggingFace that specializes in mushroom identification and information. The chatbot can analyze mushroom images and provide expert knowledge about various mushroom species.
+Overview
+This project implements an intelligent chatbot capable of:
 
-The python file `mushroom_chatbot.py` contains boilerplate code for building the mushroom chatbot using Gradio. The code contains the instructions for the exercises you need to complete to build the chatbot in the form of comments.
+Answering questions about mushrooms
+Processing and analyzing mushroom images
+Providing structured identification data in JSON format
+Maintaining context-aware conversations about mycology
 
-The goal of the chatbot is to be able to answer questions about mushrooms and process images of mushrooms. The chatbot should be able to provide information about images of mushrooms and answer questions about them.
+Features
 
-Write a report, following the given overleaf template, that contains the answers to the questions in `Things to check` and the code for the exercises in `Main exercises`. The report should also contain examples of the chatbot responses for the exercises. Submit the report, alongside your code, through Canvas.
+Multimodal Capabilities: Processes both text queries and mushroom images
+Expert System Prompting: Behaves as a mushroom expert with guided conversations
+Streaming Responses: Real-time text generation with chunk-by-chunk display
+Structured Output: JSON-formatted identification data for parsed images
+Safety Filters: (Gemini) Built-in content safety mechanisms
+Error Handling: Graceful failure recovery with conversation rewind support
 
-#### Main exercises:
- 1. Add the Gemini (or HuggingFace) chatbot to the interface.
- 2. Make the chatbot multimodal so that it can read mushroom images.
- 3. Add instructions to the chatbot, so that it behaves like a mushroom expert, and that it stirs the conversation in the right direction (i.e. mushrooms related).
- 4. Stream the answers and display the chunks of text as they are being processed.
- 5. (Gemini only) Print a message when the chatbot's safety filter is triggered.
- 6. (Gemini only) If the streaming fails, it is not possible to keep the conversation going. Add a try catch block to handle this situation (tip: use the rewind function for Gemini).
- 7. When the chatbot receives an image, ask it to produce a JSON response with the following fields: common_name, genus, confidence (of the prediction), visible (what parts of the mushrooms are visible in the image, from the set {cap, hymenium, stipe}, the color of the mushroom in the picture and the edibility of the mushroom. As an example:
-      ```json
-      {
-      "common_name": "Inkcap",
-      "genus": "Coprinus",
-      "confidence": 0.5,
-      "visible": ["cap", "hymenium", "stipe"],
-      "color": "orange",
-      "edible": true
-      }
-      ```
-    Do not display the information in the chatbot, but print it in the console. Let the chatbot keep this information in mind for the next questions.
- 8. If the user asked a question when they sent the image, after processing said image, answer the question, but if no questions were asked, provide a summary of the processed image, using the information in the JSON response.
+Implementation Tasks
+Core Functionality
 
-#### Things to check (after completing the exercises):
- 1. Assess if the model can correctly classify mushrooms? (The value is in the quality of your assessment, not the result itself.) Note: the model cannot classify the parasol mushroom as all information is not visible in the image (the stipe is missing). What happens in this case?
- 2. The model is likely not consistent in its predictions (e.g. ask twice to classify the same image). One way is to change the temperature of the model and set it to 0.0 from now on. Note that this solves the problem of reproducibility, and is generally considered a good practice, but doesn't guarantee consistency. What other causes could lead to inconsistent predictions?
- 2. Can you find a way to make the chatbot talk about another topic than mushrooms? Is it hard? If not, how would you make it harder?
- 3. Can you ask the chatbot to transcribe the text in the `nya_svampboken_p226.jpg` file? Did it do a good job? Are things reinterpreted or missing?
- 4. Safety filters:
-    * (Gemini) To transcribe the page from `Nya svampboken`, you may have had to lower the safety of the model. What are the risks and consequences of doing so?
-    * (HuggingFace) HF models don't come with safety filters. What are the risks and consequences of that? How would you approach this problem in a risky scenario?
- 5. Does the chatbot provide accurate descriptions given the instructions of exercise 7. and 8.? Specifically, is the JSON format correct? Are the fields correctly filled? Are the answers relevant? Does the summary correspond to the JSON response?
- 6. Can you check the quality of the chatbot's answers? How would you do that? Try the mushroom_*.jpg images in the `data` folder with various models of various complexities. What are the results? What are the limitations of a mushroom expert chatbot?
- 7. The Amanita Muscaria (the red mushroom with white dots) is a famous mushroom. It contains a neurotoxin that can cause delirium among other symptoms, but it is generally not deadly. It can be eaten if prepared correctly. Can you find a way to make the chatbot provide this information? Now, how can you make sure that the chatbot does not provide this information to someone who would eat the mushroom without proper preparation?
- 8. Can you find a way to make the chatbot more engaging? How would you do that?
+Gemini/HuggingFace Integration
 
-#### Optional exercises:
- 1. Add a description to the chat interface.
- 2. Add a theme to the chat interface.
- 3. Add a few examples to the chat interface.
+Add chatbot to the interface
+Configure API connections
 
-#### Evaluation
 
-Some of the exercises are more challenging than others and a few even do not have a clear solution. The evaluation will be based on the quality of the implementation, the understanding of the concepts, and the creativity of the assessment in `Things to check`.
+Multimodal Support
+
+Enable image processing capabilities
+Support mushroom photo analysis
+
+
+System Prompting
+
+Implement mushroom expert persona
+Guide conversations toward mushroom-related topics
+
+
+Streaming Implementation
+
+Display text chunks in real-time
+Handle progressive response rendering
+
+
+Safety Filter Handling (Gemini only)
+
+Display messages when safety filters trigger
+Implement appropriate user notifications
+
+
+Error Recovery (Gemini only)
+
+Add try-catch blocks for streaming failures
+Implement conversation rewind functionality
+
+
+Structured Image Analysis
+
+Generate JSON responses for mushroom images with fields:
+
+common_name: Common name of the mushroom
+genus: Scientific genus
+confidence: Prediction confidence (0-1)
+visible: Array of visible parts (["cap", "hymenium", "stipe"])
+color: Mushroom color in the image
+edible: Boolean edibility status
+
+
+
+Example Output:
+
+json   {
+     "common_name": "Inkcap",
+     "genus": "Coprinus",
+     "confidence": 0.5,
+     "visible": ["cap", "hymenium", "stipe"],
+     "color": "orange",
+     "edible": true
+   }
+
+Log JSON to console (not displayed in chat)
+Maintain context for follow-up questions
+
+
+Contextual Response Logic
+
+If user asks a question with image: Answer the question after processing
+If no question provided: Generate summary from JSON data
+
+
+
+Evaluation Questions
+1. Classification Accuracy
+Assess the model's mushroom classification capabilities. Consider:
+
+Quality of predictions across different species
+Handling of incomplete information (e.g., parasol mushroom with missing stipe)
+Edge cases and failure modes
+
+2. Prediction Consistency
+
+Test reproducibility by classifying the same image multiple times
+Implement temperature=0.0 for deterministic outputs
+Identify other potential causes of inconsistent predictions
+
+3. Prompt Engineering Security
+
+Attempt to make the chatbot discuss non-mushroom topics
+Evaluate difficulty of breaking out of the mushroom domain
+Propose improvements to make it more robust
+
+4. Text Recognition
+
+Test OCR capabilities with nya_svampboken_p226.jpg
+Evaluate transcription quality
+Identify missing or reinterpreted content
+
+5. Safety Considerations
+
+Gemini: Assess risks of lowering safety filters for text transcription
+HuggingFace: Evaluate risks of missing safety filters and mitigation strategies
+
+6. JSON Output Validation
+
+Verify correct JSON format generation
+Check accuracy of field values
+Validate summary-JSON correspondence
+
+7. Answer Quality Assessment
+
+Test with mushroom_*.jpg images from data folder
+Compare performance across model complexities
+Document limitations of the expert system
+
+8. Ethical Information Handling
+
+Test Amanita Muscaria (fly agaric) information provision
+Ensure proper warnings about neurotoxin risks
+Implement safeguards against dangerous misuse
+
+9. User Engagement
+
+Propose methods to improve chatbot engagement
+Implement conversational improvements
+
+Deliverables
+Submit via Canvas:
+
+Report following the Overleaf template
+Source code implementation
+Example chatbot responses for each exercise
+Analysis and answers to evaluation questions
+
+Notes
+
+Temperature setting affects reproducibility but doesn't guarantee consistency
+Some exercises have multiple valid solutions
+Evaluation focuses on implementation quality, conceptual understanding, and creative assessment
