@@ -1,6 +1,6 @@
-Mushroom Expert Chatbot
+**Mushroom Expert Chatbot**
 A multimodal AI chatbot powered by Gemini/HuggingFace that specializes in mushroom identification and information. The chatbot can analyze mushroom images and provide expert knowledge about various mushroom species.
-Overview
+**Overview**
 This project implements an intelligent chatbot capable of:
 
 Answering questions about mushrooms
@@ -8,7 +8,7 @@ Processing and analyzing mushroom images
 Providing structured identification data in JSON format
 Maintaining context-aware conversations about mycology
 
-Features
+**Features**
 
 Multimodal Capabilities: Processes both text queries and mushroom images
 Expert System Prompting: Behaves as a mushroom expert with guided conversations
@@ -17,8 +17,8 @@ Structured Output: JSON-formatted identification data for parsed images
 Safety Filters: (Gemini) Built-in content safety mechanisms
 Error Handling: Graceful failure recovery with conversation rewind support
 
-Implementation Tasks
-Core Functionality
+**Implementation Tasks**
+**Core Functionality**
 
 Gemini/HuggingFace Integration
 
@@ -26,37 +26,37 @@ Add chatbot to the interface
 Configure API connections
 
 
-Multimodal Support
+**Multimodal Support**
 
 Enable image processing capabilities
 Support mushroom photo analysis
 
 
-System Prompting
+**System Prompting**
 
 Implement mushroom expert persona
 Guide conversations toward mushroom-related topics
 
 
-Streaming Implementation
+**Streaming Implementation**
 
 Display text chunks in real-time
 Handle progressive response rendering
 
 
-Safety Filter Handling (Gemini only)
+**Safety Filter Handling (Gemini only)**
 
 Display messages when safety filters trigger
 Implement appropriate user notifications
 
 
-Error Recovery (Gemini only)
+**Error Recovery (Gemini only)**
 
 Add try-catch blocks for streaming failures
 Implement conversation rewind functionality
 
 
-Structured Image Analysis
+**Structured Image Analysis**
 
 Generate JSON responses for mushroom images with fields:
 
@@ -69,21 +69,6 @@ edible: Boolean edibility status
 
 
 
-Example Output:
-
-json   {
-     "common_name": "Inkcap",
-     "genus": "Coprinus",
-     "confidence": 0.5,
-     "visible": ["cap", "hymenium", "stipe"],
-     "color": "orange",
-     "edible": true
-   }
-
-Log JSON to console (not displayed in chat)
-Maintain context for follow-up questions
-
-
 Contextual Response Logic
 
 If user asks a question with image: Answer the question after processing
@@ -91,7 +76,7 @@ If no question provided: Generate summary from JSON data
 
 
 
-Evaluation Questions
+**Evaluation Questions**
 1. Classification Accuracy
 Assess the model's mushroom classification capabilities. Consider:
 
@@ -145,16 +130,3 @@ Implement safeguards against dangerous misuse
 Propose methods to improve chatbot engagement
 Implement conversational improvements
 
-Deliverables
-Submit via Canvas:
-
-Report following the Overleaf template
-Source code implementation
-Example chatbot responses for each exercise
-Analysis and answers to evaluation questions
-
-Notes
-
-Temperature setting affects reproducibility but doesn't guarantee consistency
-Some exercises have multiple valid solutions
-Evaluation focuses on implementation quality, conceptual understanding, and creative assessment
